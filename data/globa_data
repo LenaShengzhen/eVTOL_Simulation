@@ -1,0 +1,8 @@
+# globa data:
+1 		# frame_per_simSecond	// 
+3		# sim_hour				// A total of several hours of simulation
+60		# simTime_per_codeTime	// The code runs for 1 second is equivalent to how many seconds to simulate
+
+3		# num_charger			// num of charger
+20		# num_plane	
+5		# num_company  

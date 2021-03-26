@@ -1,0 +1,12 @@
+# Cruise Speed, Battery Capacity, Time to Charge (hours), Energy use at Cruise (kWh/mile), Passenger Count, Probability of fault/hour
+# Alpha Company
+120		320		0.6		1.6		4		0.25
+# Beta Company
+100		100		0.2		1.5		5		0.1
+# Charlie Company
+160		220		0.8		2.2		3		0.05
+# Delta Company
+90		120		0.62	0.8		2		0.22
+# Echo Company
+30		150		0.3		5.8		2		0.61
+
