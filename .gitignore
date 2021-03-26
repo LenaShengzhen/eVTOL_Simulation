@@ -1,3 +1,7 @@
+# .o files and executable files
+bin/**
+obj/**
+
 # Prerequisites
 *.d
 

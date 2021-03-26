@@ -18,7 +18,7 @@ A small simulation program. Given the parameters of planes produced by 5 compani
 
 Single thread: `./sc`
 
-
+Multi Thread:  `./mc`
 
 
 
@@ -38,8 +38,15 @@ Every frame: ChargingStation-class
 
 
 
+
+
 ## achieve
-Solution1: Single thread
+Solution1: Single Thread
+
+Solution2: Multi Thread
+
+- Use mutex lock the waiting queue
+- Use semaphore tell plane the frame +1
 
 
 
@@ -48,6 +55,8 @@ Solution1: Single thread
 
 ## unit test
 Calculate whether the number of flying frames + the number of waiting frames + the number of charging frames is equal to the total number of frames.
+
+
 
 
 

@@ -2,11 +2,11 @@ CC          = g++
 CFLAGS      = -O3 -g --std=c++11 -fsanitize=address
 
 TOPDIR = $(PWD)/../../
-OBJDIR = $(TOPDIR)/obj/single/
+OBJDIR = $(TOPDIR)/obj/multi/
 BINDIR = $(TOPDIR)/bin/
 SRCDIR = $(TOPDIR)/src
 COMDIR = $(SRCDIR)/common/
-SINDIR = $(SRCDIR)/SingleThread/
+SINDIR = $(SRCDIR)/MultiThread/
 
 # CPPHEADER   = Simulation.h opfile.h SingleData.h Plane.h $(SRCDIR)unitTest.h ChargingStation.h
 
@@ -15,7 +15,7 @@ CPPSIN		= Simulation.cc Plane.cc ChargingStation.cc main.cc
 COMMON 		= $(addprefix $(COMDIR),$(CPPCOM))
 SINGLE 		= $(addprefix $(SINDIR),$(CPPSIN))
 CPPSOURCE   = $(SINGLE) $(COMMON)
-EXECBIN     = sc
+EXECBIN     = mc
 OBJECTS     = $(CPPSOURCE:.cc=.o)
 OBJTEMP2 	= $(addprefix $(OBJDIR), $(notdir $(OBJECTS)))
 

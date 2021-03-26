@@ -1,0 +1,32 @@
+#include "Simulation.h"
+#include "Plane.h"
+#include "ChargingStation.h"
+#include "../common/opfile.h"
+#include "../common/SingleData.h"
+#include "../common/unitTest.h"
+
+
+int main( int argc, const char* argv[] ) {
+   
+    // read data   
+    vector<int> globa_data= readGlobaData("globa_data");
+    vector<vector<double>> data = readCompanyData("company_data");
+    SingleData* p_data = SingleData::initData(globa_data);
+   
+    // init plane
+    Simulation* p_sim = new Simulation();
+    p_sim->init(data);
+
+    // start sim
+    // p_sim->frame_timer(); 
+    p_sim->start_thread();
+
+    showResult();
+
+    test_result();
+
+    p_sim->releaseMemory();
+    delete p_sim;
+
+    return 0;
+}
