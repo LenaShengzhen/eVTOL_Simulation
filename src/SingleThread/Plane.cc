@@ -1,7 +1,8 @@
 #include "Plane.h"
-#include "SingleData.h"
-#include "StatisticalData.h"
 #include "ChargingStation.h"
+#include "../common/SingleData.h"
+#include "../common/StatisticalData.h"
+
  
 enum PLANE_Attributes { CRUISE_SPEED = 0, 
                         BATTERY_CAPACITY, 

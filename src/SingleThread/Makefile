@@ -1,20 +1,41 @@
 CC          = g++
 CFLAGS      = -O3 -g --std=c++11 -fsanitize=address
 
-CPPHEADER   = Simulation.h opfile.h SingleData.h Plane.h unitTest.h ChargingStation.h
-CPPSOURCE   = Simulation.cc opfile.cc Plane.cc unitTest.cc ChargingStation.cc main.cc 
-EXECBIN     = pc
-OBJECTS     = ${CPPSOURCE:.cc=.o}
+TOPDIR = $(PWD)/../../
+OBJDIR = $(TOPDIR)/obj/single/
+BINDIR = $(TOPDIR)/bin/
+SRCDIR = $(TOPDIR)/src
+COMDIR = $(SRCDIR)/common/
+SINDIR = $(SRCDIR)/SingleThread/
 
-all : ${EXECBIN}
+# CPPHEADER   = Simulation.h opfile.h SingleData.h Plane.h $(SRCDIR)unitTest.h ChargingStation.h
+
+CPPCOM 		= unitTest.cc opfile.cc StatisticalData.cc SingleData.cc
+CPPSIN		= Simulation.cc Plane.cc ChargingStation.cc main.cc
+COMMON 		= $(addprefix $(COMDIR),$(CPPCOM))
+SINGLE 		= $(addprefix $(SINDIR),$(CPPSIN))
+CPPSOURCE   = $(SINGLE) $(COMMON)
+EXECBIN     = sc
+OBJECTS     = $(CPPSOURCE:.cc=.o)
+OBJTEMP2 	= $(addprefix $(OBJDIR), $(notdir $(OBJECTS)))
+
+
+
+
+all : CHECKDIR MAIN
+
+CHECKDIR :
+	mkdir -p $(OBJDIR) $(BINDIR)
+
+MAIN : ${EXECBIN}
 
 ${EXECBIN} : ${OBJECTS}
-	${CC} ${CFLAGS} -o $@ $^
-    
+	${CC} ${CFLAGS} -o ${BINDIR}$@ $(addprefix $(OBJDIR),$(notdir $^))
+
 %.o : %.cc
-	${CC} ${CFLAGS} -c $<
+	${CC} ${CFLAGS} -c  $< -o $(addprefix $(OBJDIR),$(notdir $@))
 
-.PHONY : clean
+#.PHONY : clean
 
-clean :
-	rm ${OBJECTS} ${EXECBIN}
+#clean :
+#	rm  $(BINDIR)${EXECBIN}

@@ -1,13 +1,8 @@
 #include "Simulation.h"
-#include "opfile.h"
-#include "SingleData.h"
-#include "StatisticalData.h"
-#include "Plane.h"
-#include "ChargingStation.h"
-#include "unitTest.h"
+#include "../common/opfile.h"
+#include "../common/SingleData.h"
+#include "../common/unitTest.h"
 
-SingleData* SingleData::p_instance = NULL;
-StatisticalData* StatisticalData::p_instance = NULL;
 
 int main( int argc, const char* argv[] ) {
    

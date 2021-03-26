@@ -29,7 +29,7 @@ class Simulation
 		void sim(int frameID);		// simulation in each frame.
 };
 
-void showResult();
+
 string getTime();					// print current time.
 
 #endif

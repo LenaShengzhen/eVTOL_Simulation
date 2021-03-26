@@ -1,9 +1,9 @@
 #include "Simulation.h"
-#include "opfile.h"
-#include "SingleData.h"
-#include "StatisticalData.h"
 #include "Plane.h"
 #include "ChargingStation.h"
+#include "../common/opfile.h"
+#include "../common/SingleData.h"
+#include "../common/StatisticalData.h"
 
 void Simulation::init(vector<vector<double>> & data) {
     SingleData* p_data = SingleData::getInstance();
@@ -87,18 +87,6 @@ string getTime()
     return tmp;
 }
 
-void showResult() {
-    SingleData* p_data = SingleData::getInstance();
-    StatisticalData* p_collectdata = StatisticalData::getInstance();
-    for(int i = 0; i < p_data->get_num_company(); i++) {
-        double Denominator = (double)(p_collectdata->numPlane[i] * p_data->get_fph());
-        cout << setiosflags(ios::fixed)<<setprecision(3)<< "numPlane = " << p_collectdata->numPlane[i];
-        cout << " avgtimeInFly = " << p_collectdata->timeInFly[i] / Denominator << "hour";
-        cout << " avgtimeInCharging = " << p_collectdata->timeInCharging[i] / Denominator << "hour";
-        cout << " avgtimeInWait = " << p_collectdata->timeInWait[i] / Denominator << "hour";
-        cout << " totalDistanceTraveled = " << p_collectdata->totalDistance[i];
-        cout << " maxNumOfFault = " << p_collectdata->maxNumOfFault[i] << endl;
-    }
-}
+
 
 

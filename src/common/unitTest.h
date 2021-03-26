@@ -13,4 +13,6 @@ using namespace std;
 //Check if there is frame loss.
 void test_result();
 
+void showResult();
+
 #endif

@@ -2,7 +2,7 @@
 #include "SingleData.h"
 #include "StatisticalData.h"
 
-//Check if there is frame loss.
+//Check if there is frame loss. 
 void test_result()
 {
     SingleData* p_data = SingleData::getInstance();
@@ -19,4 +19,19 @@ void test_result()
         total_miss_frame += miss_frame;
     }
     cout << "total_miss_frame = " <<  total_miss_frame << endl;
+}
+
+void showResult() {
+    SingleData* p_data = SingleData::getInstance();
+    StatisticalData* p_collectdata = StatisticalData::getInstance();
+    for(int i = 0; i < p_data->get_num_company(); i++) {
+        double Denominator = (double)(p_collectdata->numPlane[i] * p_data->get_fph());
+        // keep decimals 
+        cout << setiosflags(ios::fixed) << setprecision(3)<< "numPlane = " << p_collectdata->numPlane[i];
+        cout << " avgtimeInFly = " << p_collectdata->timeInFly[i] / Denominator << "hour";
+        cout << " avgtimeInCharging = " << p_collectdata->timeInCharging[i] / Denominator << "hour";
+        cout << " avgtimeInWait = " << p_collectdata->timeInWait[i] / Denominator << "hour";
+        cout << " totalDistanceTraveled = " << p_collectdata->totalDistance[i];
+        cout << " maxNumOfFault = " << p_collectdata->maxNumOfFault[i] << endl;
+    }
 }

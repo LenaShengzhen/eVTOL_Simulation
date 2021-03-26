@@ -33,9 +33,9 @@ vector<vector<double>> readCompanyData(string str) {
 vector<string> readFile(string fileName) {
     vector<string> ret;
     ifstream read_file;
-    fileName = "../../data/" + fileName;
+    fileName = "../data/" + fileName;
     read_file.open(fileName, ios::binary);
-  
+    
     string line;
     string comment_str = "#";
     while(getline(read_file, line))

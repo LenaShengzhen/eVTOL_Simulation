@@ -2,7 +2,6 @@
 #define PLANE_H
 
 #include <vector>
-
 using namespace std;
 
 //Think of the airplane as a state machine, three states.

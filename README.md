@@ -12,13 +12,13 @@ A small simulation program. Given the parameters of planes produced by 5 compani
 
 - BUILD 
 
-make 
-
-
+`make`
 
 - RUN 
 
-./pc
+Single thread: `./sc`
+
+
 
 
 
@@ -48,3 +48,9 @@ Solution1: Single thread
 
 ## unit test
 Calculate whether the number of flying frames + the number of waiting frames + the number of charging frames is equal to the total number of frames.
+
+
+
+## Makefile
+
+The .o file will be placed under the obj folder, and the executable file will be placed under the bin folder. If the corresponding folder does not exist, a new folder will be created.
