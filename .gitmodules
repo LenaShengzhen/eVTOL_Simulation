@@ -1,0 +1,3 @@
+[submodule "src/Lock-less_MultiThread/Parallel_Processing"]
+	path = src/Lock-less_MultiThread/Parallel_Processing
+	url = https://github.com/LenaShengzhen/Parallel_Processing.git
