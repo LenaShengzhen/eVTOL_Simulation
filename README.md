@@ -61,9 +61,17 @@ The .o file will be placed under the obj folder, and the executable file will be
 
 
 
+
 ## Unit test
 
 Calculate whether the number of flying frames + the number of waiting frames + the number of charging frames is equal to the total number of frames.
+
+
+
+## read data
+
+- Support cvs (Use commas to separate data)
+- Support txt (Use spaces to separate data)
 
 
 

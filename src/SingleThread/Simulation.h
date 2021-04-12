@@ -23,7 +23,8 @@ class Simulation
 	public:
 		void init(vector<vector<double>> & data);
 		void frame_timer();			// frame-counter in simulation.
-		void releaseMemory();
+		~Simulation();
+		
 	private:
 		vector<Plane*> _planes;		// Planes in simulation.
 		void sim(int frameID);		// simulation in each frame.

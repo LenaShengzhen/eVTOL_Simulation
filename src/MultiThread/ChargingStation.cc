@@ -1,12 +1,13 @@
 #include "ChargingStation.h"
 
-ChargingStation* ChargingStation::p_instance = NULL;
+ChargingStation* ChargingStation::_pInstance = NULL;
 
 ChargingStation* ChargingStation::getInstance() {
-	if(p_instance == NULL) {
-		p_instance = new ChargingStation();
+	if(_pInstance == NULL) {
+		_pInstance = new ChargingStation();
+		atexit(destroy);
 	}
-	return p_instance;
+	return _pInstance;
 };
 
 vector<int> ChargingStation::queuePop() {
@@ -34,4 +35,3 @@ void ChargingStation::queuePush(int id) {
 	waitQueue.push(id);
 	_muQueue.unlock();
 }
-

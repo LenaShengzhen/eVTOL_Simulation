@@ -26,13 +26,13 @@ struct list {
     struct list_elem tail;      // harris's method  need
 
     list ();
-    void delete_elems_harris();
+    void delete_all_elems();
 
     // use harris + hazardpointer
     struct list_elem* lookup_harris_haz(int _id, struct list_elem **left_node);
     struct list_elem* lookup_harris_haz(int _id);
-    bool push_front_harris_haz(int _id);
-    bool remove_harris_haz(int _id);
+    bool push_front(int _id);
+    bool remove_node(int _id);
     int pop_back();
 };
 

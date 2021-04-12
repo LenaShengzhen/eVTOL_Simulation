@@ -1,15 +1,16 @@
 #include "ChargingStation.h"
 #include "ll.h"
 
-ChargingStation* ChargingStation::p_instance = NULL;
+ChargingStation* ChargingStation::_pInstance = NULL;
 
 ChargingStation* ChargingStation::getInstance() {
-	if(p_instance == NULL) {
-		p_instance = new ChargingStation();
-		atomic_init( &(p_instance->_returnCharging), 0);
+	if(_pInstance == NULL) {
+		_pInstance = new ChargingStation();
+		atexit(destroy);
+		atomic_init( &(_pInstance->_returnCharging), 0);
 		init_ll_before_startingMultiThread();
 	}
-	return p_instance;
+	return _pInstance;
 };
 
 ChargingStation::~ChargingStation() {
@@ -50,5 +51,4 @@ vector<int> ChargingStation::queuePop() {
 void ChargingStation::queuePush(int id) {
 	op_linklist(PUSH_FRONT, id);
 	queue_Size++;
-	
 }

@@ -22,7 +22,6 @@ int main( int argc, const char* argv[] ) {
 
     test_result();
     
-    p_sim->releaseMemory();
     delete p_sim;
 
     return 0;

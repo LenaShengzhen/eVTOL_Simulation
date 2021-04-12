@@ -1,7 +1,7 @@
 #include "opfile.h"
 
 vector<int> readGlobaData(string str) {
-    vector<string> lines = readFile(str);
+    vector<string> lines = read_txtFile(str);
     vector<int> ret;
     for(auto & line : lines) {
         string word;
@@ -14,7 +14,7 @@ vector<int> readGlobaData(string str) {
 
 vector<vector<double>> readCompanyData(string str) {
     vector<vector<double>> ret;
-    vector<string> lines = readFile(str);
+    vector<string> lines = read_csvFile(str);
     for(auto & line : lines) {
         vector<double> doubleLine;
         string word;
@@ -30,7 +30,7 @@ vector<vector<double>> readCompanyData(string str) {
     return ret;
 }
 
-vector<string> readFile(string fileName) {
+vector<string> read_txtFile(string fileName) {
     vector<string> ret;
     ifstream read_file;
     fileName = "../data/" + fileName;
@@ -57,4 +57,27 @@ vector<string> readFile(string fileName) {
     return ret;
 }
 
+vector<string> read_csvFile(string fileName) {
+    vector<string> ret;
+    // read file
+    ifstream read_file;
+    fileName = "../data/" + fileName + "_csv.csv";
+    read_file.open(fileName, ios::in);
+
+    string lineStr;
+    getline(read_file, lineStr);    // Skip the first line
+    while (getline(read_file, lineStr)) {
+
+        stringstream ss(lineStr);
+        string str;
+        string lineArray = " ";
+
+        // Separated by comma
+        getline(ss, str, ',');      // Skip the first column
+        while (getline(ss, str, ','))  lineArray = lineArray + str + " ";
+        ret.push_back(lineArray);
+    }
+
+    return ret;
+}
 

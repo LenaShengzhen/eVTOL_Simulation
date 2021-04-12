@@ -12,6 +12,8 @@ using namespace std;
 
 vector<int> readGlobaData(string str);
 vector<vector<double>> readCompanyData(string str);
-vector<string> readFile(string fileName);
+vector<string> read_txtFile(string fileName);
+
+vector<string> read_csvFile(string fileName);
 
 #endif

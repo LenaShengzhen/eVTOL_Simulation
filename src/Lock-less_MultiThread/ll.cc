@@ -15,6 +15,9 @@ list::list () {};
 
 const int tail_id = -1;
 
+// Head pointer of linked list
+static struct list * p_ll  = NULL;
+
 // address's 0bit is 1?
 inline int is_marked_reference(long i) {
     return (int) (i & 0x1L);
@@ -30,7 +33,7 @@ inline long get_unmarked_reference(long w) {
     return w & ~0x1L;
 }
 
-void list::delete_elems_harris() {
+void list::delete_all_elems() {
     struct list::list_elem *cur = sentinel_.next_;
     struct list::list_elem *prev;
     int deleted = 0;
@@ -54,7 +57,7 @@ void list::delete_elems_harris() {
     }
 }
 
-bool list::push_front_harris_haz(int _id) {
+bool list::push_front(int _id) {
     struct list::list_elem *right, *left;
     right = left = NULL;
     struct list::list_elem * elem = new list::list_elem(_id);
@@ -90,7 +93,8 @@ int list::pop_back() {
     return deleteID;
 }
 
-// left_node is prev,
+// left_node is prev.
+// return node is _id's node or tail node.
 struct list::list_elem* list::lookup_harris_haz(int _id, struct list_elem **left_node) {
     struct list::list_elem *left_node_next, *right_node;
     left_node_next = right_node = NULL;
@@ -125,6 +129,7 @@ struct list::list_elem* list::lookup_harris_haz(int _id, struct list_elem **left
             t_next = t->next_;
             hpVec[3]->pHazard_ = (void *)get_unmarked_reference((long)t_next);
             refer = t;
+            hpVec[6]->pHazard_ = refer;
         } while(is_marked_reference((long)t_next) || (t->id_ != _id));
 
         // t == NULL
@@ -158,7 +163,7 @@ struct list::list_elem* list::lookup_harris_haz(int _id, struct list_elem **left
 }
 
 
-bool list::remove_harris_haz(int _id) {
+bool list::remove_node(int _id) {
     struct list::list_elem *prev, *deleteNode, *del_next;
     while(1) {
         deleteNode = lookup_harris_haz(_id, &prev);
@@ -192,15 +197,11 @@ bool list::remove_harris_haz(int _id) {
     return true;
 }
 
-static std::atomic<struct list*> p_atomic_ll;
-static struct list * p_ll  = NULL;
+
 
 void init_ll_before_startingMultiThread() {
     p_ll = new list();
-    atomic_init(&p_atomic_ll, p_ll);
- 
-    struct list* ll = p_atomic_ll;
-    ll->sentinel_.next_ = &ll->tail;
+    p_ll->sentinel_.next_ = &p_ll->tail;
     
     op_linklist(PUSH_FRONT, tail_id);
 }
@@ -210,14 +211,14 @@ int op_linklist(int choose, int id){
         init_hplist_after_startingThisThread();
     }
 
-    struct list* ll = p_atomic_ll;
+    struct list* ll = p_ll;
     int ret = -1;
     switch (choose) {
         case PUSH_FRONT:
-            ll->push_front_harris_haz(id);
+            ll->push_front(id);
             break;
         case REMOVE:
-            ll->remove_harris_haz(id);
+            ll->remove_node(id);
             break;
         case POP_BACK:
             ret = ll->pop_back();
@@ -230,9 +231,7 @@ int op_linklist(int choose, int id){
 }
 
 void delete_ll() {
-
-    p_ll->delete_elems_harris();
-
+    p_ll->delete_all_elems();
     delete (p_ll);
 }
 
@@ -243,4 +242,3 @@ void init_hplist_after_startingThisThread() {
         hpVec[j] = HPRecType::Acquire();
     }
 }
-

@@ -26,7 +26,7 @@ class Simulation
 	public:
 		void init(vector<vector<double>> & data);
 		static void phread_frame_timer(void* __this);
-		void 	releaseMemory();
+		~Simulation();
 
 		void 	start_thread();
 		int 	get_frame(){return _frame;};

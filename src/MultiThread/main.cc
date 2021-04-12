@@ -18,14 +18,12 @@ int main( int argc, const char* argv[] ) {
     p_sim->init(data);
 
     // start sim
-    // p_sim->frame_timer(); 
     p_sim->start_thread();
 
     showResult();
 
     test_result();
 
-    p_sim->releaseMemory();
     delete p_sim;
 
     return 0;

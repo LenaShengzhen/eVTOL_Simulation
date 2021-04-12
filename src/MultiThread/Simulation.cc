@@ -108,7 +108,7 @@ void Simulation::phread_frame_timer(void* __this) {
         std::cout << elapsed.count() << "ms "  << std::endl;;
 }
 
-void Simulation::releaseMemory() {
+Simulation::~Simulation() {
     for(int i = 0; i < _planes.size(); i++) {
         auto p = _planes[i];
         delete p;
@@ -123,5 +123,3 @@ string getTime()
     strftime(tmp, sizeof(tmp), "%Y-%m-%d %H:%M:%S",localtime(&timep) );
     return tmp;
 }
-
-

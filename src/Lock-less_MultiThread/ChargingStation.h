@@ -17,14 +17,16 @@ if chargers becomes free.
 class ChargingStation
 {
 private:
-	static ChargingStation* p_instance;
+	static ChargingStation* _pInstance;
 
 private:
 	ChargingStation() {};
 	~ChargingStation();
 	ChargingStation(const ChargingStation&);
 	ChargingStation& operator=(const ChargingStation&);
-
+	static void destroy() {
+		if(_pInstance) delete _pInstance;
+	}
 public:
 	int 	_freeCharging	= 0;
 	atomic<int> _returnCharging;
@@ -33,7 +35,7 @@ public:
 	static ChargingStation* getInstance(); 
 	vector<int> queuePop();		//Pop plane, if free chargers exist. 
 	void queuePush(int id);
-	int queue_Size = 0;
+	int queue_Size = 0;	
 };
 
 

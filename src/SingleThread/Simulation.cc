@@ -71,7 +71,7 @@ void Simulation::frame_timer() {
         std::cout << elapsed.count() << "ms "  << std::endl;;
 }
 
-void Simulation::releaseMemory() {
+Simulation::~Simulation() {
     for(int i = 0; i < _planes.size(); i++) {
         auto p = _planes[i];
         delete p;
